@@ -3,6 +3,8 @@ import { GlobalStyle } from '../GlobalStyle';
 // import PropTypes from 'prop-types';
 import { Container } from './App.styled';
 import Section from 'components/Section';
+import FeedbackOptions from 'components/FeedbackOptions';
+import Statistics from 'components/Statistics';
 
 class App extends Component {
   state = {
@@ -11,11 +13,22 @@ class App extends Component {
     bad: 0,
   };
 
+  leaveFeedback = () => {
+    console.log('😎');
+    // this.state;
+  };
+
   render() {
+    const { good, neutral, bad } = this.state;
     return (
       <Container>
         <GlobalStyle />
-        <Section title="Please leave feedback" />
+        <Section title="Please leave feedback">
+          <FeedbackOptions onLeaveFeedback={this.leaveFeedback} />
+        </Section>
+        <Section title="Statistics">
+          <Statistics good={good} neutral={neutral} bad={bad} />
+        </Section>
       </Container>
     );
   }
