@@ -1,31 +1,35 @@
 import PropTypes from 'prop-types';
-import { Button } from './FeedbackOptions.styled';
+import { Button, ButtonWrapper } from './FeedbackOptions.styled';
+import { AiFillDislike, AiFillLike, AiFillDownCircle } from 'react-icons/ai';
 
 const FeedbackOptions = ({ onLeaveFeedback }) => {
   return (
-    <div>
+    <ButtonWrapper>
       <Button
         type="button"
         style={{ backgroundColor: 'green' }}
-        onClick={() => onLeaveFeedback()}
+        onClick={() => onLeaveFeedback('good')}
       >
         Good
+        <AiFillLike />
       </Button>
       <Button
         type="button"
         style={{ backgroundColor: '#07b8f4' }}
-        onClick={() => onLeaveFeedback()}
+        onClick={() => onLeaveFeedback('neutral')}
       >
         Neutral
+        <AiFillDownCircle />
       </Button>
       <Button
         type="button"
         style={{ backgroundColor: 'red' }}
-        onClick={() => onLeaveFeedback()}
+        onClick={() => onLeaveFeedback('bad')}
       >
         Bad
+        <AiFillDislike />
       </Button>
-    </div>
+    </ButtonWrapper>
   );
 };
 
