@@ -7,12 +7,13 @@ export const Button = styled.button`
   align-items: center;
   gap: 5px;
   border-radius: 8px;
-  /* background-color: #88c426; */
+  text-transform: capitalize;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   outline: none;
-  transition: all 250ms ease-in-out;
+  transition: transform 50ms ease-in-out, color 250ms ease-in-out,
+    box-shadow 250ms ease-in-out;
 
   &:active {
     transform: scale(0.95);

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { GlobalStyle } from '../GlobalStyle';
-// import PropTypes from 'prop-types';
 import { Container } from './App.styled';
 import Section from 'components/Section';
 import FeedbackOptions from 'components/FeedbackOptions';
 import Statistics from 'components/Statistics';
+import Notification from 'components/Notification';
 
 class App extends Component {
   state = {
@@ -32,7 +32,7 @@ class App extends Component {
     const total = this.countTotalFeedback();
     const positiveFeedback = this.state.good;
     const result = (positiveFeedback / total) * 100;
-    return total ? result.toFixed(1) : 0;
+    return total ? Number(result.toFixed(1)) : 0;
   };
 
   render() {
@@ -41,16 +41,23 @@ class App extends Component {
       <Container>
         <GlobalStyle />
         <Section title="Please leave feedback">
-          <FeedbackOptions onLeaveFeedback={this.leaveFeedback} />
+          <FeedbackOptions
+            options={this.state}
+            onLeaveFeedback={this.leaveFeedback}
+          />
         </Section>
         <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
+          {this.countTotalFeedback() > 0 ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <Notification message="There is not feedback" />
+          )}
         </Section>
       </Container>
     );
